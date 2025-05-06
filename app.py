@@ -62,12 +62,16 @@ def stream_submissions(reddit, subreddits, apprise_client):
 
 
 def process_submission(submission, subreddits, apprise_client):
-    """Notify if given submission matches search."""
+    """Notify if given submission matches search and doesn't match exclude."""
     title = submission.title
-    sub = submission.subreddit.display_name
-    search_terms = subreddits[sub.lower()]
+    sub = submission.subreddit.display_name.lower()
+    subreddit_config = subreddits[sub]
 
-    if any(term in title.lower() for term in search_terms):
+    include_terms = subreddit_config.get("include", [])
+    exclude_terms = subreddit_config.get("exclude", [])
+
+    # Check if title contains any include terms but no exclude terms
+    if any(term in title.lower() for term in include_terms) and not any(term in title.lower() for term in exclude_terms):
         notify(apprise_client, title, submission.permalink)
         if LOGGING != "FALSE":
             print(datetime.datetime.fromtimestamp(submission.created_utc),
@@ -162,19 +166,26 @@ def validate_config(config):
     print("Monitoring Reddit for:")
 
     subs = reddit[YAML_KEY_SUBREDDITS]
-    for conf in subs:
-        current = subs[conf]
+    for conf, filters in subs.items():
+        if not isinstance(filters, dict):
+            sys.exit(f"Invalid config: '{conf}' must contain 'include' and/or 'exclude' as dictionaries")
 
-        if not isinstance(current, list) or not current:
-            sys.exit("Invalid config: \'" + conf + "\' needs a list of search strings")
+        include = filters.get("include", [])
+        exclude = filters.get("exclude", [])
 
-        if not all(isinstance(item, str) for item in current):
-            sys.exit("Invalid config: \'" + conf + "\' needs a list of search strings")
+        if not isinstance(include, list) or not all(isinstance(item, str) for item in include):
+            sys.exit(f"Invalid config: 'include' in '{conf}' must be a list of strings")
 
-        subs[conf] = [x.lower() for x in current]
-        print("\tr/" + conf + ": ", current)
+        if not isinstance(exclude, list) or not all(isinstance(item, str) for item in exclude):
+            sys.exit(f"Invalid config: 'exclude' in '{conf}' must be a list of strings")
 
-    print("")
+        subs[conf] = {
+            "include": [x.lower() for x in include],
+            "exclude": [x.lower() for x in exclude]
+        }
+
+        print(f"\tr/{conf}: include={include}, exclude={exclude}")
+
     reddit[YAML_KEY_SUBREDDITS] = {k.lower(): v for k, v in subs.items()}
     return config
 
