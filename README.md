@@ -1,4 +1,4 @@
-# Reddit Post Notifier
+# RedditMonitor
 
 Get notified for new Reddit posts that match your search criteria with included/excluded support.
 
