@@ -36,7 +36,7 @@ The configuration is stored inside a yaml file, you can copy `config.yaml.exampl
 	```
 3. Subreddit configuration with your desired search terms for each subreddit you want to monitor, the following example monitors r/GameDeals for any post that includes the words 'free' OR '100%' in the title (make sure this key appears under the `reddit` key, with [proper indentation](http://www.yamllint.com/), and using [single quotes](https://stackoverflow.com/questions/19109912/yaml-do-i-need-quotes-for-strings-in-yaml) if needed)
 	```
-   =subreddits:
+   subreddits:
      gamedeals:
       include:
        - 'free'
