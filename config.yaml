@@ -9,12 +9,17 @@ reddit:
   agent: reddit-post-notifier (u/xxxxxx)
     
   subreddits:
-    gamedeals:
+   gamedeals:
+    include:
       - 'free'
       - '100%'
-      - 'cyberpunk'
-
-    buildapcsalesuk:
-      - '3080'
-      - 'ssd'
-      - 'razer'
+    exclude:
+     - 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+     
+   gundeals:
+    include:
+      - 'handgun'
+      - '9mm'
+    exclude:
+     - 'Glock 19'
+  
