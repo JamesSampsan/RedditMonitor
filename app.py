@@ -45,10 +45,16 @@ def stream_submissions(reddit, subreddits, apprise_client):
     subs_joined = "+".join(subs)
     subreddit = reddit.subreddit(subs_joined)
 
+    # Maintain a set of already processed submission IDs
+    processed_ids = set()
+
     while True:
         try:
             for submission in subreddit.stream.submissions(pause_after=None, skip_existing=True):
-                process_submission(submission, subreddits, apprise_client)
+                if submission.id not in processed_ids:
+                    process_submission(submission, subreddits, apprise_client)
+                    # Mark the submission as processed
+                    processed_ids.add(submission.id)
 
         except KeyboardInterrupt:
             sys.exit("\tStopping application, bye bye")
