@@ -36,12 +36,12 @@ The configuration is stored inside a yaml file, you can copy `config.yaml.exampl
 	```
 3. Subreddit configuration with your desired search terms for each subreddit you want to monitor, the following example monitors r/GameDeals for any post that includes the words 'free' OR '100%' in the title (make sure this key appears under the `reddit` key, with [proper indentation](http://www.yamllint.com/), and using [single quotes](https://stackoverflow.com/questions/19109912/yaml-do-i-need-quotes-for-strings-in-yaml) if needed)
 	```
-subreddits:
-   gamedeals:
-    include:
+   subreddits:
+    gamedeals:
+     include:
       - 'free'
       - '100%'
-    exclude:
+     exclude:
      - 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 	```
 
@@ -90,7 +90,7 @@ services:
 - I am a complete idiot. This is what I made for myself. Don't expect me to fix issues unless specifically needs to be changed. It's a goddamn miracle that I got this working in the first place.
 - I got this working on Docker for Unraid, with Discord webhook integration. Don't expect this to work on Telegram or other services. It should, but I don't know for sure.
 - If anyone finds out how to support multiple Discord webhooks, let me know.
-- Thanks
+- Copy the example config file and go from there. 
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
