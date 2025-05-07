@@ -1,6 +1,6 @@
 # Reddit Post Notifier
 
-Get notified for new Reddit posts that match your search criteria.
+Get notified for new Reddit posts that match your search criteria with included/excluded support.
 
 ![](/assets/screenshot.jpg)
 
