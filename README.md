@@ -19,7 +19,7 @@ If using Python, install the requirements first:
 `pip install -r requirements.txt`
 
 ## Configuration
-The configuration is stored inside a yaml file, you can copy `config.yaml.example` into a new file `config.yaml` use that as a base, the following sections are all required:
+The configuration is stored inside a yaml file, you can copy the example`config.yaml` into a new file `config.yaml` use that as a base, the following sections are all required:
 1. Apprise configuration urls as a list, for your chosen providers
 	```
 	apprise:
