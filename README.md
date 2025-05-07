@@ -44,14 +44,16 @@ The configuration is stored inside a yaml file, you can copy `config.yaml.exampl
 - `RPN_LOGGING` environment variable can be set to `TRUE` to enable logging each matched post to the console as well.
 - [Docker-Compose](https://docs.docker.com/compose/) configuration:
 ```
-version: "3.8"
+version: "1.0"
+
 services:
-  reddit-post-notifier:
-    container_name: reddit-post-notifier
-    image: ghcr.io/rafhaanshah/reddit-post-notifier:latest
-    restart: unless-stopped
-    volumes:
-        - ./config.yaml:/app/config.yaml	
+    redditmonitor:
+        container_name: redditmonitor
+        image: ghcr.io/jamessampsan/redditmonitor
+        restart: unless-stopped
+        volumes:
+            - ./config.yaml:/app/config.yaml
+
 ```
 
 ## Usage
