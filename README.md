@@ -87,7 +87,7 @@ services:
 - Apprise does not log even if your configuration is invalid or not working, you can check if your urls work by installing the Apprise CLI: https://github.com/caronc/apprise/wiki/CLI_Usage
 - Check the console logs for API errors, the app uses PRAW for accessing the Reddit API and you may find something in their docs: https://praw.readthedocs.io/en/latest/
 
-- I am a complete idiot. This is what I made for myself. Don't expect me to fix issues unless specifically needs to be changed. It's a goddamn miracle that I got this working in the first place.
+- I am a complete idiot. This is what I made for myself. Don't expect me to fix issues unless you specifically note what needs to be changed. It's a goddamn miracle that I got this working in the first place.
 - I got this working on Docker for Unraid, with Discord webhook integration. Don't expect this to work on Telegram or other services. It should, but I don't know for sure.
 - If anyone finds out how to support multiple Discord webhooks, let me know.
 - Copy the example config file and go from there. 
